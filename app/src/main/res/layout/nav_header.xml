@@ -5,11 +5,12 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:background="@color/purple_500">
-    <ImageView
+    <TextView
         android:layout_width="180dp"
-        android:layout_height="130dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/abc_vector_test"/>
+        android:text="SideBar"
+        android:textColor="@color/white"/>
 
 </LinearLayout>
