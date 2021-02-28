@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,6 +15,8 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.newspaperboot.adapter.PostAdapter;
+import com.newspaperboot.fragment.CategoryFragment;
+import com.newspaperboot.fragment.HomeFragment;
 import com.newspaperboot.model.PostModel;
 import com.newspaperboot.service.PostService;
 import java.util.List;
@@ -24,10 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle t;
     private NavigationView nv;
-    PostService postService;
-//    ListView postGv;
-    GridView postGv;
-
+    Class fragmentClass;
+    Fragment fragment = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,43 +47,31 @@ public class MainActivity extends AppCompatActivity {
                 switch(id)
                 {
                     case R.id.home:
-                        Toast.makeText(MainActivity.this, "My Account",Toast.LENGTH_SHORT).show();break;
-                    case R.id.settings:
-                        Toast.makeText(MainActivity.this, "Settings",Toast.LENGTH_SHORT).show();break;
+                        fragmentClass = HomeFragment.class;
+                        break;
+                    case R.id.category:
+                        fragmentClass = CategoryFragment.class;
+                        break;
                     case R.id.mycart:
                         Toast.makeText(MainActivity.this, "My Cart", Toast.LENGTH_SHORT).show();break;
                     default:
                         return true;
                 }
+                try {
+                    fragment = (Fragment) fragmentClass.newInstance();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+                item.setChecked(true);
+                setTitle(item.getTitle());
+                dl.closeDrawers();
 
                 return true;
 
             }
         });
-        postService = RetrofitConf.createService(PostService.class);
-        postGv = findViewById(R.id.gv);
-        Call<List<PostModel>> list = postService.getAll();
-        list.enqueue(new Callback<List<PostModel>>() {
-            @Override
-            public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
-                List list = response.body();
-                if (list !=null && list.size()>0){
-                    showPostlist(list);
-                }else {
-                    System.out.println("not found====");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<PostModel>> call, Throwable t) {t.printStackTrace();
-            }
-        });
-    }
-
-    private void showPostlist(List<PostModel> list) {
-        PostAdapter adapter = new PostAdapter(this,list);
-        postGv.setAdapter(adapter);
-
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

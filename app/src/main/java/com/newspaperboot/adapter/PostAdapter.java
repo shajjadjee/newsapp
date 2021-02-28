@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import com.newspaperboot.R;
 import com.newspaperboot.RetrofitConf;
 import com.newspaperboot.ViewDetails;
+import com.newspaperboot.fragment.HomeFragment;
 import com.newspaperboot.model.PostModel;
 import com.newspaperboot.service.PostService;
 import com.squareup.picasso.Picasso;
@@ -42,7 +43,7 @@ public class PostAdapter extends ArrayAdapter<PostModel> {
         imageuri = Uri.parse(post.getFimage());
         TextView title = rowview.findViewById(R.id.title);
         ImageView photo = rowview.findViewById(R.id.imagev);
-        title.setText(post.getPtitle());
+        title.setText(post.getPtitle().substring(0,28));
         Picasso.get().load(imageuri).into(photo);
         title.setOnClickListener(new View.OnClickListener() {
             @Override
