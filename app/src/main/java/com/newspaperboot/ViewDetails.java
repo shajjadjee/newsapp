@@ -22,16 +22,20 @@ public class ViewDetails extends AppCompatActivity {
 Intent i;
 ImageView imageView;
 TextView title;
+TextView pdate;
 TextView desc;
+TextView uname;
 Context ctx;
     Uri imageuri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_details);
+        setContentView(R.layout.activity_post_details);
         ctx=this;
         postService = RetrofitConf.createService(PostService.class);
         title = findViewById(R.id.title);
+        uname = findViewById(R.id.uname);
+        pdate = findViewById(R.id.pdate);
         desc = findViewById(R.id.desc);
         imageView = findViewById(R.id.fimg);
          i = getIntent();
@@ -42,6 +46,8 @@ Context ctx;
             public void onResponse(Call<PostModel> call, Response<PostModel> response) {
                 PostModel post = response.body();
                 title.setText(post.getPtitle());
+                pdate.setText(post.getPdate());
+                uname.setText(post.getUsername());
                 desc.setText(post.getPdesc());
                 imageuri = Uri.parse(post.getFimage());
                 Picasso.get().load(imageuri).into(imageView);

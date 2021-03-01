@@ -7,60 +7,55 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 
 import com.newspaperboot.R;
+import com.newspaperboot.RetrofitConf;
+import com.newspaperboot.adapter.CatAdapter;
+import com.newspaperboot.adapter.PostAdapter;
+import com.newspaperboot.model.CatModel;
+import com.newspaperboot.model.PostModel;
+import com.newspaperboot.service.CatService;
+import com.newspaperboot.service.PostService;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CategoryFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class CategoryFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public CategoryFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CategoryFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CategoryFragment newInstance(String param1, String param2) {
-        CategoryFragment fragment = new CategoryFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    CatService catService;
+    GridView gv;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_category, container, false);
+        View v = inflater.inflate(R.layout.fragment_category, container, false);
+        super.onCreate(savedInstanceState);
+        catService = RetrofitConf.createService(CatService.class);
+        gv = v.findViewById(R.id.gv);
+        Call<List<CatModel>> list = catService.getAll();
+        list.enqueue(new Callback<List<CatModel>>() {
+            @Override
+            public void onResponse(Call<List<CatModel>> call, Response<List<CatModel>> response) {
+                List list = response.body();
+                if (list != null && list.size() > 0) {
+                    showCatlist(list);
+                } else {
+                    System.out.println("not found====");
+                }
+            }
+            @Override
+            public void onFailure(Call<List<CatModel>> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+        return v;
+    }
+    private void showCatlist(List<CatModel> list) {
+        CatAdapter adapter = new CatAdapter(getActivity(),list);
+        gv.setAdapter(adapter);
     }
 }

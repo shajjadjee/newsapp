@@ -1,11 +1,10 @@
 package com.newspaperboot.fragment;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.widget.GridView;
 import com.newspaperboot.R;
 import com.newspaperboot.RetrofitConf;
 import com.newspaperboot.adapter.PostAdapter;
-import com.newspaperboot.adapter.PostReAdapter;
 import com.newspaperboot.model.PostModel;
 import com.newspaperboot.service.PostService;
 
@@ -27,11 +25,7 @@ import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
     PostService postService;
-//    RecyclerView gv;
     GridView gv;
-    PostReAdapter postReAdapter;
-    List<PostModel> list;
-    Uri imageuri;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,10 +52,7 @@ public class HomeFragment extends Fragment {
         return v;
     }
     private void showPostlist(List<PostModel> list) {
-//        postReAdapter = new PostReAdapter(getActivity(),list,imageuri);
-//        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),3,RecyclerView.VERTICAL,false);
-//        gv.setLayoutManager(gridLayoutManager);
-//        gv.setAdapter(postReAdapter);
+
         PostAdapter adapter = new PostAdapter(getActivity(),list);
         gv.setAdapter(adapter);
     }

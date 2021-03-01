@@ -6,12 +6,12 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/imagev"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxHeight="20px"
-            android:maxWidth="40px"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/imagev"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:maxHeight="20px"-->
+<!--            android:maxWidth="40px"/>-->
 
         <TextView
             android:id="@+id/title"
