@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.category:
                         fragmentClass = CategoryFragment.class;
                         break;
-                    case R.id.mycart:
+                    case R.id.bookmarks:
                         Toast.makeText(MainActivity.this, "My Cart", Toast.LENGTH_SHORT).show();break;
                     default:
                         return true;

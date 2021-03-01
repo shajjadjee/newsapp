@@ -29,7 +29,8 @@ public class PostAdapter extends ArrayAdapter<PostModel> {
     PostService postService;
     Uri imageuri;
     public PostAdapter(Activity context, List<PostModel> list) {
-        super(context, R.layout.postgv, list);
+//        super(context, R.layout.postgv, list);
+        super(context, R.layout.item_home_recent_post_list, list);
         postService = RetrofitConf.createService(PostService.class);
         this.context = context;
         this.list = list;
@@ -39,7 +40,8 @@ public class PostAdapter extends ArrayAdapter<PostModel> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         PostModel post = list.get(position);
-        View rowview =inflater.inflate(R.layout.postgv,null,true);
+        View rowview =inflater.inflate(R.layout.item_home_recent_post_list,null,true);
+//        View rowview =inflater.inflate(R.layout.postgv,null,true);
         imageuri = Uri.parse(post.getFimage());
         TextView title = rowview.findViewById(R.id.title);
         ImageView photo = rowview.findViewById(R.id.imagev);

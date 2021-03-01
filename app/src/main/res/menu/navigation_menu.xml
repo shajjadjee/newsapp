@@ -2,13 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/home"
-        android:icon="@drawable/abc_vector_test"
+        android:icon="@drawable/ic_home"
         android:title="Home"/>
     <item android:id="@+id/category"
-        android:icon="@drawable/abc_vector_test"
+        android:icon="@drawable/ic_categories"
         android:title="Category"/>
-    <item android:id="@+id/mycart"
-        android:icon="@drawable/abc_vector_test"
-        android:title="My Cart"/>
+    <item android:id="@+id/bookmarks"
+        android:icon="@drawable/ic_book"
+        android:title="Bookmarks"/>
+    <item android:title="others">
+        <menu>
+            <item
+                android:id="@+id/action_exit"
+                android:icon="@drawable/ic_exit"
+                android:title="Exit" />
+        </menu>
+    </item>
 
 </menu>
