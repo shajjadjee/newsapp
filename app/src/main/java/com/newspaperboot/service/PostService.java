@@ -18,7 +18,7 @@ public interface PostService {
     @GET("post/one/{id}")
     public Call<PostModel> getById(@Path("id") long id);
     @GET("post/list/{cname}")
-    public Call<PostModel> getByCat(@Path("cname") String cname);
+    public Call<List<PostModel>> getByCat(@Path("cname") String cname);
     @GET("post/delete/{id}")
     public Call<PostModel> deleteById(@Path("id") long id);
 }

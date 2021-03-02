@@ -83,7 +83,7 @@
                 android:contentDescription="@string/app_name"
                 android:padding="8dp"
                 android:scaleType="centerInside"
-                tools:src="@drawable/ic_un_book" />
+                tools:src="@drawable/ic_book" />
 
             <ImageButton
                 android:id="@+id/btn_share"

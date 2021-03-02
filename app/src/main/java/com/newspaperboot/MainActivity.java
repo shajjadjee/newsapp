@@ -7,23 +7,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.GridView;
-import android.widget.ListView;
-import android.widget.Toast;
-
 import com.google.android.material.navigation.NavigationView;
-import com.newspaperboot.adapter.PostAdapter;
 import com.newspaperboot.fragment.CategoryFragment;
 import com.newspaperboot.fragment.HomeFragment;
-import com.newspaperboot.model.PostModel;
-import com.newspaperboot.service.PostService;
-import java.util.List;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout dl;
@@ -74,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 dl.closeDrawers();
 
                 return true;
-
             }
         });
     }

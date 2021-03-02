@@ -41,6 +41,7 @@ Context ctx;
          i = getIntent();
         long id = i.getLongExtra("id", 0);
         Call<PostModel> post = postService.getById(id);
+        System.out.println(post+"================");
         post.enqueue(new Callback<PostModel>() {
             @Override
             public void onResponse(Call<PostModel> call, Response<PostModel> response) {

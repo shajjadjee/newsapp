@@ -33,6 +33,7 @@ public class CategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_category, container, false);
         super.onCreate(savedInstanceState);
+
         catService = RetrofitConf.createService(CatService.class);
         gv = v.findViewById(R.id.gv);
         Call<List<CatModel>> list = catService.getAll();
@@ -42,6 +43,7 @@ public class CategoryFragment extends Fragment {
                 List list = response.body();
                 if (list != null && list.size() > 0) {
                     showCatlist(list);
+
                 } else {
                     System.out.println("not found====");
                 }
