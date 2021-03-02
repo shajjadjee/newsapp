@@ -45,9 +45,11 @@ public class PostAdapter extends ArrayAdapter<PostModel> {
         imageuri = Uri.parse(post.getFimage());
         TextView title = rowview.findViewById(R.id.title);
         TextView date_text = rowview.findViewById(R.id.date_text);
+        TextView category_name = rowview.findViewById(R.id.category_name);
         ImageView photo = rowview.findViewById(R.id.imagev);
         title.setText(post.getPtitle().substring(0,30));
         date_text.setText(post.getPdate());
+        category_name.setText(post.getCname());
         Picasso.get().load(imageuri).into(photo);
         title.setOnClickListener(new View.OnClickListener() {
             @Override

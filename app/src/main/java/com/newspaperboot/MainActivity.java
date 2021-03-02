@@ -45,7 +45,11 @@ public class MainActivity extends AppCompatActivity {
                         fragmentClass = CategoryFragment.class;
                         break;
                     case R.id.bookmarks:
-                        fragmentClass = CategoryFragment.class;
+                        fragmentClass = BookmarkListActivity.class;
+                        break;
+                    case R.id.action_exit:
+                        finish();
+                        System.exit(0);
                         break;
                     default:
                         return true;
@@ -60,18 +64,15 @@ public class MainActivity extends AppCompatActivity {
                 item.setChecked(true);
                 setTitle(item.getTitle());
                 dl.closeDrawers();
-
                 return true;
             }
         });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if(t.onOptionsItemSelected(item))
             return true;
 
         return super.onOptionsItemSelected(item);
     }
-
 }

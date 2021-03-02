@@ -36,7 +36,6 @@ public class CatepostList extends AppCompatActivity {
         Call<List<PostModel>> list = postService.getByCat(cname);
         System.out.println(list+"================");
         list.enqueue(new Callback<List<PostModel>>() {
-
             @Override
             public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
                 List list = response.body();
@@ -46,10 +45,8 @@ public class CatepostList extends AppCompatActivity {
                     System.out.println("not found====");
                 }
             }
-
             @Override
             public void onFailure(Call<List<PostModel>> call, Throwable t) {
-
             }
         });
     }

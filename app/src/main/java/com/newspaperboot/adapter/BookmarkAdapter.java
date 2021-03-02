@@ -9,11 +9,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.bumptech.glide.Glide;
 import com.newspaperboot.R;
+import com.newspaperboot.bookmark.ListItemClickListener;
 import com.newspaperboot.model.BookmarkModel;
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,20 +22,24 @@ public class BookmarkAdapter extends RecyclerView.Adapter<com.newspaperboot.adap
 
 Context mContext;
 ArrayList<BookmarkModel> mBookmarkList;
+    private ListItemClickListener mItemClickListener;
 
 
     public BookmarkAdapter(Context mContext, ArrayList<BookmarkModel> mBookmarkList) {
         this.mContext = mContext;
         this.mBookmarkList = mBookmarkList;
     }
+    public void setItemClickListener(ListItemClickListener mItemClickListener) {
+        this.mItemClickListener = mItemClickListener;
+    }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bookmark_list, parent, false);
-        return new ViewHolder(view, viewType,);
+        return new ViewHolder(view, viewType,mItemClickListener);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private ImageView imgPost;
+        private ImageView imagev;
         private TextView tvPostTitle, tvCategoryName, tvPostDate;
         private ImageButton btnBookmark, btnSharePost;
         private RelativeLayout lytContainer;
@@ -47,8 +51,8 @@ ArrayList<BookmarkModel> mBookmarkList;
 
             this.itemClickListener = itemClickListener;
             // Find all views ids
-            imgPost = (ImageView) itemView.findViewById(R.id.post_img);
-            tvPostTitle = (TextView) itemView.findViewById(R.id.title_text);
+            imagev = (ImageView) itemView.findViewById(R.id.imagev);
+            tvPostTitle = (TextView) itemView.findViewById(R.id.title);
             tvCategoryName = (TextView) itemView.findViewById(R.id.category_name);
             tvPostDate = (TextView) itemView.findViewById(R.id.date_text);
             btnBookmark = (ImageButton) itemView.findViewById(R.id.btn_book);
@@ -86,11 +90,11 @@ ArrayList<BookmarkModel> mBookmarkList;
         if (imgUrl != null) {
             Glide.with(mContext)
                     .load(imgUrl)
-                    .into(mainHolder.imgPost);
+                    .into(mainHolder.imagev);
         } else {
             Glide.with(mContext)
-                    .load(R.color.imgPlaceholder)
-                    .into(mainHolder.imgPost);
+                    .load(R.color.white)
+                    .into(mainHolder.imagev);
         }
 
         mainHolder.tvPostDate.setText(model.getFormattedDate());

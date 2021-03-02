@@ -7,6 +7,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue">#2196F3</color>
+    <color name="orange">#FF9800</color>
+    <color name="gray">#CFD8DC</color>
+    <color name="purple">#7A1EA1</color>
+    <color name="pink">#FF3F80</color>
+    <color name="green">#00BF9A</color>
+    <color name="red">#F44336</color>
     <color name="toolbar_boarder">#e5e6ea</color>
     <color name="colorAccent21">#FF3F80</color>
+    <color name="imgPlaceholder">#ffffff</color>
+    <color name="colorPrimaryDark">#CCCCCC</color>
+
 </resources>
