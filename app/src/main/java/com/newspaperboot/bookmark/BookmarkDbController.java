@@ -17,18 +17,37 @@ public class BookmarkDbController {
         db = DbHelper.getInstance(context).getWritableDatabase();
     }
 
-    public int insertData(int postId, String postImage, String postTitle, String postUrl, String postCategory, String postDate) {
+    public BookmarkDbController(long postId, String postImage, String postTitle, String postUrl, String postCategory, String postDate) {
+    }
+
+//    public long insertData(long postId, String postImage, String postTitle, String postUrl, String postCategory, String postDate) {
+//
+//        ContentValues values = new ContentValues();
+//        values.put(DbConstants.COLUMN_POST_ID, postId);
+//        values.put(DbConstants.COLUMN_POST_IMAGE, postImage);
+//        values.put(DbConstants.COLUMN_POST_TITLE, postTitle);
+//        values.put(DbConstants.COLUMN_POST_URL, postUrl);
+//        values.put(DbConstants.COLUMN_POST_CATEGORY, postCategory);
+//        values.put(DbConstants.COLUMN_POST_DATE, postDate);
+//
+//        // Insert the new row, returning the primary key value of the new row
+//        return db.insert(
+//                DbConstants.BOOKMARK_TABLE_NAME,
+//                DbConstants.COLUMN_NAME_NULLABLE,
+//                values);
+//    }
+    public long insertData(BookmarkModel bookmarkModel) {
 
         ContentValues values = new ContentValues();
-        values.put(DbConstants.COLUMN_POST_ID, postId);
-        values.put(DbConstants.COLUMN_POST_IMAGE, postImage);
-        values.put(DbConstants.COLUMN_POST_TITLE, postTitle);
-        values.put(DbConstants.COLUMN_POST_URL, postUrl);
-        values.put(DbConstants.COLUMN_POST_CATEGORY, postCategory);
-        values.put(DbConstants.COLUMN_POST_DATE, postDate);
+        values.put(DbConstants.COLUMN_POST_ID, bookmarkModel.getId());
+        values.put(DbConstants.COLUMN_POST_IMAGE, bookmarkModel.getPostImageUrl());
+        values.put(DbConstants.COLUMN_POST_TITLE, bookmarkModel.getPostTitle());
+        values.put(DbConstants.COLUMN_POST_URL, bookmarkModel.getPostUrl());
+        values.put(DbConstants.COLUMN_POST_CATEGORY, bookmarkModel.getPostCategory());
+        values.put(DbConstants.COLUMN_POST_DATE, bookmarkModel.getFormattedDate());
 
         // Insert the new row, returning the primary key value of the new row
-        return (int) db.insert(
+        return db.insert(
                 DbConstants.BOOKMARK_TABLE_NAME,
                 DbConstants.COLUMN_NAME_NULLABLE,
                 values);

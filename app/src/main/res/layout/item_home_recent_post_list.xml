@@ -80,6 +80,7 @@
                 android:adjustViewBounds="true"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="8dp"
+                android:onClick="btnbook"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_book" />
 

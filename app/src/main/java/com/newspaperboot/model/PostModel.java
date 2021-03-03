@@ -19,6 +19,15 @@ public class PostModel {
     private String cname;
     @SerializedName("username")
     private String username;
+    private boolean mIsBookmark;
+
+    public boolean ismIsBookmark() {
+        return mIsBookmark;
+    }
+
+    public void setmIsBookmark(boolean mIsBookmark) {
+        this.mIsBookmark = mIsBookmark;
+    }
 
     public long getId() {
         return id;
@@ -95,6 +104,7 @@ public class PostModel {
                 ", feature='" + feature + '\'' +
                 ", cname='" + cname + '\'' +
                 ", username='" + username + '\'' +
+                ", mIsBookmark=" + mIsBookmark +
                 '}';
     }
 }
