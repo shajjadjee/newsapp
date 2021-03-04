@@ -7,9 +7,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
+import com.newspaperboot.fragment.BookmarkList;
 import com.newspaperboot.fragment.CategoryFragment;
 import com.newspaperboot.fragment.HomeFragment;
 
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentClass = CategoryFragment.class;
                         break;
                     case R.id.bookmarks:
-                        fragmentClass = BookmarkListActivity.class;
+                        fragmentClass = BookmarkList.class;
                         break;
                     case R.id.action_exit:
                         finish();
