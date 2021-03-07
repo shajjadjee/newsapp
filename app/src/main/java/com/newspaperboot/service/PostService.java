@@ -13,6 +13,8 @@ import retrofit2.http.Path;
 public interface PostService {
     @POST("post/add")
     public Call<PostModel> add(@Body PostModel postModel);
+    @GET("post/catlist")
+    public Call<List<PostModel>> getcat();
     @GET("post/list")
     public Call<List<PostModel>> getAll();
     @GET("post/one/{id}")

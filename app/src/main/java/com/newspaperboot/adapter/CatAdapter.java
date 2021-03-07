@@ -22,6 +22,7 @@ import com.newspaperboot.RetrofitConf;
 import com.newspaperboot.model.CatModel;
 import com.newspaperboot.model.PostModel;
 import com.newspaperboot.service.CatService;
+import com.newspaperboot.service.PostService;
 
 import java.util.List;
 
@@ -29,8 +30,12 @@ public class CatAdapter extends ArrayAdapter<CatModel> {
     Activity context;
     List<CatModel> list;
     CatService catService;
+//    List<PostModel> list;
+//    PostService postService;
     public CatAdapter(Activity context, List<CatModel> list) {
         super(context, R.layout.postgv, list);
+//        super(context, R.layout.postgv, list);
+//        postService = RetrofitConf.createService(PostService.class);
         catService = RetrofitConf.createService(CatService.class);
         this.context = context;
         this.list = list;
@@ -40,6 +45,7 @@ public class CatAdapter extends ArrayAdapter<CatModel> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         CatModel cat = list.get(position);
+//        PostModel cat = list.get(position);
         View rowview =inflater.inflate(R.layout.postgv,null,true);
         TextView title = rowview.findViewById(R.id.title);
         title.setText(cat.getCname());
@@ -51,6 +57,7 @@ public class CatAdapter extends ArrayAdapter<CatModel> {
                 FragmentTransaction fragmentManager =((FragmentActivity)context).getSupportFragmentManager()
                         .beginTransaction();
                 CatModel cat = list.get(position);
+//                PostModel cat = list.get(position);
                 Bundle b = new Bundle();
                 b.putString("title",cat.getCname().toString());
                 cp.setArguments(b);
